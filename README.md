@@ -466,4 +466,36 @@ inoremap {<CR> {<CR>}<Esc>O
 :PlugInstall
 ```
 - If you used my script make sure to install the tmux with your package manager, cause some of the Commands in script should be used in tmux session to work.
-
+<!-- TODO: Separate section will be added for tmux, which will be OS independent, the same config can be used for all the OS's when it comes to tmux (So don't worry it'll be here soon)-->
+---
+## Neovim Config
+### Installation
+- I use Lazyvim with some extra UI Themes, Templates and keybinding add-ons.
+- If you want to install the plain version of Lazyvim and do the extra config by yourself, I suggest you to go through the [Lazyvim Installation guide](https://www.lazyvim.org/installation) for vanilla ("term to describe the original, unmodified, or plain version of a technology, language, application, or configuration." just for reference 😉) lazyvim installation and you can skip the remaining Nvim documentation here. You can always refer to my config if you stuck in modification.
+- If you want to install my version of extra configured Lazyvim, you can do so by placing the `config_files/MacOS/nvim` directory of this repo under the `~/.config/` directory of your system.
+- Hit `nvim` in terminal and you're good to go. everything is setup. In case if you want to know what extra changes i've made to the vanilla version you can refer the below.
+### My changes to vanilla version of Lazyvim
+- It mainly consist of these things:
+  1. extra plugins i've added
+  2. Creating new directory `~/.config/nvim/lua/user/` for adding custom code templates and keybindings.
+- Before We move on to the plugins and templates. If you want to remap the Esc key with your custom key in nvim to toggle between command and insert mode update `~/.config/nvim/lua/config/keymaps.lua` file to do so.
+  - I Personally use `kj` over `Esc`, you can use anything just replace the `kj` below with your preferred keybinding
+    ```lua
+    -- Here it remaps the <Esc> to kj
+    vim.api.nvim_set_keymap("i", "kj", "<Esc>", { noremap = true, silent = true })
+    ```
+#### 1. Extra plugins I use 
+- I use separate file each plugin i download under `~/.config/nvim/lua/plugins/` directory. Below are the list of files which contains the each pulgins
+  1. colorscheme.lua
+  2. fzf.lua
+  3. tmux_navigation.lua 
+  4. vim-dadbod-ui.lua 
+  5. vim-run-code.lua
+  6. some more are there but they are just to prettify the code, you can remove them if not needed
+- you can find the contents of the above file under the `config_files/MacOS/nvim/`
+#### 2. Creating new directory `~/.config/nvim/lua/user/` for adding custom code templates and keybindings.
+- I created new directory `~/.config/nvim/lua/users/` for adding new key-maps to use the code templates.
+- And one more directory `~/.config/nvim/lua/users/templates` for adding code templates
+- Under the `templates` directory add whatever code file you want, this file contents can be inserted in some other file by using the key-binding we're about the create in next steps. 
+- Next create a new file under `users` i.e., `~/.config/nvim/lua/user/init.lua` to write the logic and keybinding to use those templates.
+- You can see my init.lua file containing a keymap <leader>ti which calls the function insert_template() which lists all the templates under templates/ directory using fzf.
