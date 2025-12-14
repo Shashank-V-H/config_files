@@ -513,3 +513,16 @@ require("user")
                      --   ⬆      ⬆       These two should be changed according to you system path
   local template_dir = "user system path should be mentioned here/.config/nvim/lua/user/templates" -- don't use '~' here, 
 ```
+## Tmux (Independent of OS, config remains same for all OS)
+- We need mainly two things here
+  1. Tmux plugin manager (tpm)
+  2. tmux config file to add config contents
+### Installing tpm
+- just git clone the tpm directory in home directory.
+```bash
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
+### adding/updating the `tmux.conf` file 
+- If not created before add `~/.config/tmux/tmux.conf` file.
+- flood it with my `tmux.conf` file contents under `config_files/Tmux/tmux.conf` of this repo. 
+- Open tmux session and press bind key and capital I to install the plugins mentioned in the tmux.conf file.
