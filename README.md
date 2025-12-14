@@ -499,3 +499,17 @@ inoremap {<CR> {<CR>}<Esc>O
 - Under the `templates` directory add whatever code file you want, this file contents can be inserted in some other file by using the key-binding we're about the create in next steps. 
 - Next create a new file under `users` i.e., `~/.config/nvim/lua/user/init.lua` to write the logic and keybinding to use those templates.
 - You can see my init.lua file containing a keymap <leader>ti which calls the function insert_template() which lists all the templates under templates/ directory using fzf.
+> [!This is important to templates keybinding work]
+> under there will be another init.lua file in this path `~/.config/nvim/init.lua` we have to add our `user` in that file to include his content in the environment, we can do that by adding below line it that file.
+```lua
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.lazy")
+require("user")
+```
+> [!WARNING]
+> Finally don't forget to change the below line in the `user/init.lua ` file.
+```lua
+  local template_dir = "/Users/apple/.config/nvim/lua/user/templates" -- Path to your templates, change this to below line
+                     --   ⬆      ⬆       These two should be changed according to you system path
+  local template_dir = "user system path should be mentioned here/.config/nvim/lua/user/templates" -- don't use '~' here, 
+```
