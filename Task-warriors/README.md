@@ -63,7 +63,7 @@ Add this to `~/.bashrc` or `~/.zshrc`:
 function task() {
     ~/pull_task.sh      # Step 1: auto-pull
     command task "$@"   # Step 2: run the original Taskwarrior command
-    ~/.push_task.sh     # Step 3: auto-commit & push
+    ~/push_task.sh     # Step 3: auto-commit & push
 }
 ```
 
