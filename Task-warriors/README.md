@@ -88,3 +88,44 @@ Run `task add …`, `task done …`, etc., as usual. The wrapper automatically h
 ---
 
 This is the minimal setup you need to keep your `.task` file synced safely with Git.
+
+
+# Updated scripts to supress git messages:
+
+## **1. Update `pull_task.sh`**
+
+```bash
+#!/bin/bash
+cd "$HOME/.task" || exit
+
+# Pull quietly
+git pull --rebase origin main --quiet 2>/dev/null
+```
+
+* `--quiet` suppresses normal Git output.
+* `2>/dev/null` hides error messages if you want it completely silent.
+
+---
+
+## **2. Update `push_task.sh`**
+
+```bash
+#!/bin/bash
+cd "$HOME/.task" || exit
+
+# Only commit if there are changes
+if git diff --quiet && git diff --cached --quiet; then
+    :
+else
+    git add . >/dev/null 2>&1
+    git commit -m "Auto-update task file $(date '+%Y-%m-%d %H:%M:%S')" >/dev/null 2>&1
+    git push origin main --quiet >/dev/null 2>&1
+fi
+```
+
+* `>/dev/null 2>&1` suppresses all standard output and errors.
+* `--quiet` for push avoids verbose messages.
+
+---
+
+## **3. Keep the wrapper function the same**
