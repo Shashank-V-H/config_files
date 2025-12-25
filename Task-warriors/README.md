@@ -128,7 +128,14 @@ fi
 
 ---
 
-## **3. Keep the wrapper function the same**
+## **3. Keep the wrapper function the same Or if you don't want to mess up the scripts with --quiet command just update the wrapper function and scripts with basic function is enough**
+```bash
+function task() {
+    ~/pull_task.sh >/dev/null 2>&1     # Silence the pull
+    command task "$@"
+    ~/push_task.sh >/dev/null 2>&1     # Silence the push
+}
+```
 
 ## **4. Upgrading to Taskwarrior 3.4.2 (v3+ Architecture)**
 
