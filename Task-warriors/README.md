@@ -129,3 +129,34 @@ fi
 ---
 
 ## **3. Keep the wrapper function the same**
+
+## **4. Upgrading to Taskwarrior 3.4.2 (v3+ Architecture)**
+
+### **Overview**
+
+Upgraded from 2.6.2 to 3.4.2 to support modern features and cross-device compatibility. This version requires a manual build on older systems (like Ubuntu 22.04) due to modern Rust dependencies and also because I'm using WSL2 which doesn't have latest packages in Package manager `apt`. I can use other package managers but they install higher version than the specific version i want, which makes the compatibility issues with other two devices where i already downloaded the 3.4.2 version.
+
+### **Installation Steps**
+
+1. **Remove conflicts:** Removed `taskwarrior` (apt) and `task` (snap).
+2. **Modernize Rust:** Installed the latest Rust toolchain via `rustup` (required version ≥ 1.81.0).
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source $HOME/.cargo/env
+
+```
+
+
+3. **Build from Source:**
+```bash
+wget https://github.com/GothenburgBitFactory/taskwarrior/releases/download/v3.4.2/task-3.4.2.tar.gz
+tar xzvf task-3.4.2.tar.gz && cd task-3.4.2
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+sudo cmake --install build
+
+# Refresh shell and verify
+hash -r
+task --version  # Output: task 3.4.2
+```
+
