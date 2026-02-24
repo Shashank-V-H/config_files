@@ -19,6 +19,10 @@ set bg=dark                              " Use a dark background
 set tabstop=4                            " Tab size is 4 spaces
 set softtabstop=4
 set shiftwidth=4
+" Apply Linux Kernel style to C files
+autocmd FileType c,cpp setlocal tabstop=8 shiftwidth=8 softtabstop=8 noexpandtab
+" The "Pragmatic" exception for Python
+autocmd FileType python setlocal tabstop=4 shiftwidth=4 expandtab
 set cursorline                           " Highlight the current cursor line
 hi CursorLine gui=underline cterm=underline
 set laststatus=2                         " Enable status bar
