@@ -6,6 +6,7 @@ Plug 'aperezdc/vim-template'               " Template support
 Plug 'junegunn/fzf'                        " Fuzzy finder
 Plug 'junegunn/fzf.vim'
 Plug 'christoomey/vim-tmux-navigator'      " Seamless navigation between Vim and Tmux
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
 " ====================================
@@ -77,6 +78,10 @@ nnoremap <C-j> :TmuxNavigateDown<CR>
 nnoremap <C-k> :TmuxNavigateUp<CR>
 nnoremap <C-l> :TmuxNavigateRight<CR>
 nnoremap <C-\> :TmuxNavigatePrevious<CR>
+
+" For Moving the line up and down
+nnoremap <C-;> :m-2<CR>==
+nnoremap <C-'> :m+1<CR>==
 
 " ====================================
 " Visual Feedback and Highlighting
@@ -438,6 +443,11 @@ nnoremap s :call FlashSearch()<CR>
 " Define a mapping for auto-completing brackets with proper indentation
 inoremap {<CR> {<CR>}<Esc>O
 
+" ====================================
+" Vimwiki (Obsidian-compatible setup)
+" ====================================
 
+let g:vimwiki_list = [{'path': '~/git-files/h4/obsidian_notes/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
 
-
+let g:vimwiki_ext2syntax = {}

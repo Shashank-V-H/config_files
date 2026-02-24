@@ -17,10 +17,13 @@ syntax on                                 " Enable syntax highlighting
 set smartindent                          " Automatically indent new lines
 colorscheme default                      " Set color scheme
 set bg=dark                              " Use a dark background
-set tabstop=8        " Render a tab character as 8 spaces
-set softtabstop=8    " Make the 'backspace' key delete a full tab
-set shiftwidth=8     " Use 8 spaces for indentation (like >> or <<)
-set noexpandtab      " DO NOT convert tabs to spaces
+set tabstop=4                            " Tab size is 4 spaces
+set softtabstop=4
+set shiftwidth=4
+" Apply Linux Kernel style to C files
+autocmd FileType c,cpp setlocal tabstop=8 shiftwidth=8 softtabstop=8 noexpandtab
+" The "Pragmatic" exception for Python
+autocmd FileType python setlocal tabstop=4 shiftwidth=4 expandtab
 set cursorline                           " Highlight the current cursor line
 hi CursorLine gui=underline cterm=underline
 set laststatus=2                         " Enable status bar
@@ -75,6 +78,10 @@ nnoremap <C-j> :TmuxNavigateDown<CR>
 nnoremap <C-k> :TmuxNavigateUp<CR>
 nnoremap <C-l> :TmuxNavigateRight<CR>
 nnoremap <C-\> :TmuxNavigatePrevious<CR>
+
+" For Moving the line up and down
+nnoremap <C-;> :m-2<CR>==
+nnoremap <C-'> :m+1<CR>==
 
 " ====================================
 " Visual Feedback and Highlighting
